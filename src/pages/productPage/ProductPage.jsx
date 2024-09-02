@@ -7,7 +7,7 @@ import Accordion from '../../components/accordion/Accordion';
 
 const ProductPage = () => {
     return (
-        <div>
+        <div className='bg-[#FFFFF6]'>
             <h1>This is Product Page</h1>
             <Accordion/>
             <Banner/>

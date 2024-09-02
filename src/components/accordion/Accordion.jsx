@@ -1,7 +1,6 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 
 const Accordion = () => {
-    // Initialize the state with the first question index (0)
     const [openQuestion, setOpenQuestion] = useState(0);
 
     const toggleQuestion = (index) => {
@@ -48,7 +47,7 @@ const Accordion = () => {
     ];
 
     return (
-        <div className='px-4 py-8 xl:px-10 xl:py-20 bg-[#FFFFF6]'>
+        <div className='px-4 py-8 xl:py-10 xl:px-20 border-t border-b mb-10'>
             <div className="flex flex-col-reverse lg:flex-row items-center">
                 <div className="w-full xl:w-[60%]">
                     <div className="space-y-1">
