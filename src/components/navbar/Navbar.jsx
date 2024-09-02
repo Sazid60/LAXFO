@@ -47,7 +47,7 @@ const Navbar = () => {
             <li>
                 <NavLink
                     className={({ isActive }) => isActive ? 'underline ' : 'font-normal  lg:hidden'} to={"/blog"}>
-                    sign In
+                    Sign In
                 </NavLink>
             </li>
         </>

@@ -12,7 +12,7 @@ const MainLayout = () => {
             </div>
 
             <div className=''>
-                <div className='px-4 lg:px-20 bg-[#F2EBE0]'>
+                <div className='px-4 bg-[#F2EBE0]'>
                     <Navbar />
                 </div>
                 <div>
