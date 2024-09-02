@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { CiSearch } from 'react-icons/ci';
 import { IoCartOutline } from 'react-icons/io5';
-import { RxCross2, RxHamburgerMenu } from 'react-icons/rx';
+import {RxHamburgerMenu } from 'react-icons/rx';
 import { NavLink } from 'react-router-dom';
 import SideNav from './SideNav';
 
