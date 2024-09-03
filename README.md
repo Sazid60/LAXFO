@@ -1,7 +1,7 @@
 # LAXFO Project
 
-#### Website URL: [https://wufoo-university.netlify.app/](https://wufoo-university.netlify.app/)
-#### Server-Side Repository: [https://github.com/Sazid60/WUFOO-SERVER](https://github.com/Sazid60/WUFOO-SERVER)
+#### Website URL: [https://laxfo.netlify.app/](https://laxfo.netlify.app/)
+#### Server-Side Repository: [https://github.com/Sazid60?tab=repositories](https://github.com/Sazid60?tab=repositories)
 
 ## Overview
 
@@ -25,13 +25,13 @@ LAXFO is a responsive website built using React, Tailwind CSS, and Daisy UI. The
 - **Local Storage**: 
   - Cart data is preserved in local storage, allowing users to retain their cart information even after refreshing the page or revisiting later.
 
-  ## Where T0 Click To Add In Cart
+  - ## Where T0 Click To Add In Cart
 
-# Main Product
-![Main Product](/ins1.png)
+ - **Main Product**:
+  ![Main Product](/public/ins1.png)
 
-# Featured Products
-![Featured Products](/ins2.png)
+- **Featured Products** 
+  ![Featured Products](/public/ins2.png)
 
 - **Navigation**: 
   - Seamless navigation through different pages of the website is enabled by React Router.
