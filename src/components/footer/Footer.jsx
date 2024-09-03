@@ -1,12 +1,13 @@
 // eslint-disable-next-line no-unused-vars
 import React from 'react';
 import { GoArrowUpRight } from 'react-icons/go';
+import { Link } from 'react-router-dom';
 
 const Footer = () => {
     return (
         <div className='flex flex-col lg:flex-row lg:gap-6 lg:justify-around items-center bg-[#15322D] text-white py-14 px-4 md:px-16 md:py-6 lg:px-20 lg:py-11'>
             <div className='flex justify-start w-full lg:w-auto'>
-                <img src="/logo2.png" alt="" />
+                <Link to="/"><img src="/logo2.png" alt="" /></Link> 
             </div>
             <div className='max-w-[398px] md:max-w-[450px] text-center mt-14 lg:mt-0'>
                 <h1>Subscribe to the newsletter and always stay updated on the 
@@ -19,11 +20,11 @@ const Footer = () => {
             <div className='mt-11 lg:mt-0'>
                 <h1 className='text-center lg:text-left'>We are here to help</h1>
                 <div className='flex justify-center items-center space-x-5 mt-3'>
-                   <a href=""><img src="icon1.png" alt="" /></a> 
-                   <a href=""><img src="icon2.png" alt="" /></a> 
-                   <a href=""><img src="icon3.png" alt="" /></a> 
-                   <a href=""><img src="icon4.png" alt="" /></a> 
-                   <a href=""><img src="icon5.png" alt="" /></a> 
+                   <a href=""><img src="icon1.png" alt="#" /></a> 
+                   <a href=""><img src="icon2.png" alt="#" /></a> 
+                   <a href=""><img src="icon3.png" alt="#" /></a> 
+                   <a href=""><img src="icon4.png" alt="#" /></a> 
+                   <a href=""><img src="icon5.png" alt="#" /></a> 
                 </div>
             </div>
         </div>

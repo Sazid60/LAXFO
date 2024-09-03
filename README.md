@@ -24,13 +24,16 @@ LAXFO is a responsive website built using React, Tailwind CSS, and Daisy UI. The
 - **Local Storage**: 
   - Cart data is preserved in local storage, allowing users to retain their cart information even after refreshing the page or revisiting later.
 
-  ## Where T0 Click To Add In Cart
+  ## Where To Click To Add In Cart/Add or Remove Quantity?
 
  - **Main Product**:
   ![Main Product](/public/ins1.png)
 
 - **Featured Products** 
   ![Featured Products](/public/ins2.png)
+
+- **Cart Products** 
+  ![Featured Products](/public/ins3.png)
 
 - **Navigation**: 
   - Seamless navigation through different pages of the website is enabled by React Router.
