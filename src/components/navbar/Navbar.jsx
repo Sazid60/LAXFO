@@ -2,24 +2,30 @@ import { useState, useEffect } from 'react';
 import { CiSearch } from 'react-icons/ci';
 import { IoCartOutline } from 'react-icons/io5';
 import { RxHamburgerMenu } from 'react-icons/rx';
-import { Link, NavLink } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import SideNav from './SideNav';
+import CartDrawer from '../cartDrawer/CartDrawer';
+
 
 const Navbar = () => {
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+    const [isCartDrawerOpen, setIsCartDrawerOpen] = useState(false);
     const [cartItemCount, setCartItemCount] = useState(0);
 
     const toggleSidebar = () => {
         setIsSidebarOpen(!isSidebarOpen);
     };
 
+    const toggleCartDrawer = () => {
+        setIsCartDrawerOpen(!isCartDrawerOpen);
+    };
+
     useEffect(() => {
         const cart = JSON.parse(localStorage.getItem('cart')) || [];
         const totalItems = cart.reduce((acc, item) => acc + item.quantity, 0);
         setCartItemCount(totalItems);
-    }, [isSidebarOpen]);
+    }, [isCartDrawerOpen, isSidebarOpen]);
 
-    // All The navlinks in navbar
     const navLinks = (
         <>
             <li>
@@ -72,12 +78,14 @@ const Navbar = () => {
                     <div className='flex justify-between gap-1 lg:gap-3 items-center'>
                         <CiSearch className='w-6 h-6' />
                         <div className="relative">
-                            <Link to="/cartPage"><IoCartOutline className='w-6 h-6' /></Link>
-                            {cartItemCount > 0 && (
-                                <span className="absolute -top-2 -right-2 w-5 h-5 text-xs flex items-center justify-center bg-red-600 text-white rounded-full">
-                                    {cartItemCount}
-                                </span>
-                            )}
+                            <button onClick={toggleCartDrawer} className="relative">
+                                <IoCartOutline className='w-6 h-6' />
+                                {cartItemCount > 0 && (
+                                    <span className="absolute -top-2 -right-2 w-5 h-5 text-xs flex items-center justify-center bg-red-600 text-white rounded-full">
+                                        {cartItemCount}
+                                    </span>
+                                )}
+                            </button>
                         </div>
                         <a className='text-[14px] hidden md:block lg:text-sm' href='/signin'>Sign In</a>
                         <button onClick={toggleSidebar} className="lg:hidden ml-3">
@@ -89,6 +97,9 @@ const Navbar = () => {
 
             {/* Side Navbar */}
             <SideNav toggleSidebar={toggleSidebar} isSidebarOpen={isSidebarOpen} navLinks={navLinks} />
+
+            {/* Cart Drawer */}
+            <CartDrawer isOpen={isCartDrawerOpen} onClose={toggleCartDrawer} />
         </>
     );
 };

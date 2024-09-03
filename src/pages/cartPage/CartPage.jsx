@@ -96,7 +96,7 @@ const CartPage = () => {
                     <span>Subtotal</span>
                     <span>{subtotal.toFixed(2)} Tk</span>
                 </div>
-                <button className="w-full bg-[#164F49] text-white py-2 rounded-md mt-4 text-lg">Checkout</button>
+                <button className="w-full bg-[#164F49] text-white py-2 rounded-full mt-4 text-lg">Checkout</button>
             </div>
         </div>
     );
