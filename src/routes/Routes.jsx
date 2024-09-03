@@ -3,6 +3,10 @@ import MainLayout from "../layouts/MainLayout";
 import ProductPage from "../pages/productPage/ProductPage";
 import ErrorPage from "../pages/errorPage/ErrorPage";
 import CartPage from "../pages/cartPage/CartPage";
+import ShopPage from "../pages/shopPage/ShopPage";
+import PrescriptionPage from "../pages/prescriptionPage/PrescriptionPage";
+import BookTherapyPage from "../pages/bookThrapyPage/BookTherapyPage";
+import BlogPage from "../pages/blogPage/BlogPage";
 
 const router = createBrowserRouter([
     {
@@ -17,6 +21,22 @@ const router = createBrowserRouter([
             {
                 path: "/cartPage",
                 element:<CartPage/> ,
+            },
+            {
+                path: "/shop",
+                element:<ShopPage/> ,
+            },
+            {
+                path: "/prescription",
+                element:<PrescriptionPage/> ,
+            },
+            {
+                path: "/book",
+                element:<BookTherapyPage/> ,
+            },
+            {
+                path: "/blog",
+                element:<BlogPage/> ,
             },
         ]
     },

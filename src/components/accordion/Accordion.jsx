@@ -3,10 +3,12 @@ import { useState } from 'react';
 const Accordion = () => {
     const [openQuestion, setOpenQuestion] = useState(0);
 
+    // handles the open or close state of accordion
     const toggleQuestion = (index) => {
         setOpenQuestion(openQuestion === index ? null : index);
     };
 
+    // Fake Data
     const faqData = [
         {
             question: 'Benefits',

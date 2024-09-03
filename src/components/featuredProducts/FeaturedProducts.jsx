@@ -1,5 +1,6 @@
 import React from 'react';
 import FeaturedCards from './FeaturedCards';
+import 'animate.css';
 
 const FeaturedProducts = () => {
     const productData = [
@@ -46,7 +47,7 @@ const FeaturedProducts = () => {
             imageUrl: "/card6.jpg",
         },
     ];
-    
+
 
     return (
         <div className='px-4 py-6 xl:px-20 mb-4 xl:mb-14 mt-4 xl:mt-10 border-t border-b'>
@@ -54,7 +55,21 @@ const FeaturedProducts = () => {
             <p className='font-normal italic text-xs lg:text-xl mt-4'>
                 In the dynamic world of e-commerce, the "Frequently Bought Together" feature has become a cornerstone of the online shopping experience. This tool leverages the power of data analytics and consumer behavior insights to suggest complementary products that are often purchased in conjunction with the item a customer is viewing. By highlighting these related products, retailers aim to increase sales, improve customer satisfaction, and streamline the shopping process.
             </p>
-            <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-6 mb-6'>
+            {/* warning */}
+            <div className='flex justify-center items-center'>
+            <div className="flex flex-row pl-4 gap-2 items-center overflow-hidden animate__animated animate__flash animate__infinite" style={{ animationDuration: '10s' }}>
+                    <span className="flex-shrink-0 inline-flex item-center justify-center leading-none rounded-full text-red-500">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="h-5 w-5">
+                            <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clipRule="evenodd"></path>
+                        </svg>
+                    </span>
+                    <div className="flex-1 p-2">
+                        <p className="text-xs md:text-sm text-red-600 font-medium underline">Please Click The + Icon in The Top Right Corner Of The Card to Add to Cart</p>
+                    </div>
+                </div>
+            </div>
+            {/*  */}
+            <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6  mb-6'>
                 {productData.map((product, index) => (
                     <FeaturedCards key={index} product={product} />
                 ))}

@@ -2,51 +2,50 @@ import React, { useState } from 'react';
 import { AiOutlinePlus } from 'react-icons/ai';
 
 const FeaturedCards = ({ product }) => {
-    // Local state for quantity
     const [quantity, setQuantity] = useState(0);
 
-    // Handle click event for the '+' icon
+    // Handling click event for the '+' icon
     const handleAddToCart = () => {
         // Increase the quantity
         const newQuantity = quantity + 1;
         setQuantity(newQuantity);
 
-        // Calculate updated price based on new quantity
+        // Calculating updated price based on new quantity
         const updatedPrice = product.price * newQuantity;
 
-        // Prepare product data
+        //product data
         const cartItem = {
             name: product.name,
-            price: updatedPrice, // Update price based on quantity
+            price: updatedPrice, 
             imageUrl: product.imageUrl,
-            size: product.measurement, // Include measurement as size
+            size: product.measurement, 
             quantity: newQuantity
         };
 
-        // Get existing cart from local storage
+        // Getting existing cart from local storage
         const cart = JSON.parse(localStorage.getItem('cart')) || [];
 
-        // Find index of existing item in cart
+        // Finding index of existing item in cart
         const itemIndex = cart.findIndex(
             item => item.name === cartItem.name &&
                     item.measurement === cartItem.measurement
         );
 
         if (itemIndex > -1) {
-            // Update existing item in cart
+            // Updating existing item in cart
             cart[itemIndex].quantity = newQuantity;
             cart[itemIndex].price = updatedPrice;
         } else {
-            // Add new item to cart
+            // Adding new item to cart
             cart.push(cartItem);
         }
 
-        // Save updated cart to local storage
+        // Saving updated cart to local storage
         localStorage.setItem('cart', JSON.stringify(cart));
     };
 
     return (
-        <div className='relative w-full lg:w-[295px] mx-auto mt-4 xl:mt-10'>
+        <div className='relative w-full lg:w-[295px] mx-auto mt-4 xl:mt-10 hover:scale-105'>
             <img 
                 className='relative w-[398px] h-[230px] md:w-[600px] md:h-[401px]' 
                 src={product.imageUrl} 

@@ -19,6 +19,7 @@ const Navbar = () => {
         setCartItemCount(totalItems);
     }, [isSidebarOpen]);
 
+    // All The navlinks in navbar
     const navLinks = (
         <>
             <li>

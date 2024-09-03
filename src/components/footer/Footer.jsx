@@ -19,11 +19,11 @@ const Footer = () => {
             <div className='mt-11 lg:mt-0'>
                 <h1 className='text-center lg:text-left'>We are here to help</h1>
                 <div className='flex justify-center items-center space-x-5 mt-3'>
-                    <img src="icon1.png" alt="" />
-                    <img src="icon2.png" alt="" />
-                    <img src="icon3.png" alt="" />
-                    <img src="icon4.png" alt="" />
-                    <img src="icon5.png" alt="" />
+                   <a href=""><img src="icon1.png" alt="" /></a> 
+                   <a href=""><img src="icon2.png" alt="" /></a> 
+                   <a href=""><img src="icon3.png" alt="" /></a> 
+                   <a href=""><img src="icon4.png" alt="" /></a> 
+                   <a href=""><img src="icon5.png" alt="" /></a> 
                 </div>
             </div>
         </div>

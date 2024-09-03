@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { FaStar } from 'react-icons/fa';
+import 'animate.css';
 
 const ProductInfo = () => {
 
@@ -18,17 +19,17 @@ const ProductInfo = () => {
 
     const handleAddToCart = (action) => {
         let newQuantity = quantity;
-    
+
         if (action === 'increase') {
             newQuantity += 1;
         } else if (action === 'decrease' && quantity > 0) {
             newQuantity -= 1;
         }
-    
+
         setQuantity(newQuantity);
-    
+
         const updatedTotalPrice = unitPrice * newQuantity;
-    
+
         const cartItem = {
             name: 'Liposomal Vitamin C',
             price: updatedTotalPrice,
@@ -37,13 +38,13 @@ const ProductInfo = () => {
             quantity: newQuantity,
             imageUrl: '/product1.png'
         };
-    
+
         const cart = JSON.parse(localStorage.getItem('cart')) || [];
-    
+
         const itemIndex = cart.findIndex(
             item => item.name === cartItem.name && item.size === cartItem.size && item.flavour === cartItem.flavour
         );
-    
+
         if (newQuantity === 0) {
             if (itemIndex > -1) {
                 cart.splice(itemIndex, 1);
@@ -57,7 +58,7 @@ const ProductInfo = () => {
                 cart.push(cartItem);
             }
         }
-    
+
         localStorage.setItem('cart', JSON.stringify(cart));
     };
 
@@ -133,6 +134,19 @@ const ProductInfo = () => {
 
             {/* Cart Adding */}
             <div className="border-t border-b my-6 py-4">
+                {/* warning */}
+                <div className='flex justify-center items-center'>
+                    <div className="flex flex-row pl-4 gap-2 items-center overflow-hidden animate__animated animate__flash animate__infinite" style={{ animationDuration: '10s' }}>
+                        <span className="flex-shrink-0 inline-flex item-center justify-center leading-none rounded-full text-red-500">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="h-5 w-5">
+                                <path fillRule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clipRule="evenodd"></path>
+                            </svg>
+                        </span>
+                        <div className="flex-1 p-2">
+                            <p className="text-xs md:text-sm text-red-600 font-medium underline">Please Click The + Or - To Add Or Remove Quantity in the Cart</p>
+                        </div>
+                    </div>
+                </div>
                 <div className="flex items-center justify-between mb-2 bg-[#164F49] text-white">
                     <button
                         onClick={() => handleAddToCart('decrease')}

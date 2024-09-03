@@ -10,12 +10,18 @@ const SideNav = ({ toggleSidebar, isSidebarOpen, navLinks }) => {
                 className={`fixed inset-y-0 left-0 z-50 w-full bg-[#F2EBE0] transform ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full'} transition-transform duration-300 ease-in-out lg:hidden`}
             >
                 <div className='flex justify-between items-center px-6 py-3'>
-                    <img src="/logo.png" className='' alt="" />
+                    <img src="/logo.png" className='' alt="Logo" />
                     <RxCross2 onClick={toggleSidebar} />
-                </div> <hr className='h-[1px] bg-slate-400 border-0' />
-                <div className="flex flex-col items-center justify-center p-4 mt-16 ">
+                </div>
+                <hr className='h-[1px] bg-slate-400 border-0' />
+                <div className="flex flex-col items-center justify-center p-4 mt-16">
                     <ul className="menu flex flex-col items-center text-4xl space-y-4 font-medium">
-                        {navLinks}
+                        {React.Children.map(navLinks.props.children, (link) => {
+                            // Clone each NavLink and add an onClick handler to toggle the sidebar
+                            return React.cloneElement(link, {
+                                onClick: toggleSidebar,
+                            });
+                        })}
                     </ul>
                 </div>
             </div>

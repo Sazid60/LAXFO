@@ -5,18 +5,21 @@ const CartPage = () => {
     const [cart, setCart] = useState([]);
     const [subtotal, setSubtotal] = useState(0);
 
+    // handles the side effects
     useEffect(() => {
         const savedCart = JSON.parse(localStorage.getItem('cart')) || [];
         setCart(savedCart);
         calculateSubtotal(savedCart);
     }, []);
 
+    // for any kind of updates in the cart tems
     const updateCart = (updatedCart) => {
         setCart(updatedCart);
         localStorage.setItem('cart', JSON.stringify(updatedCart));
         calculateSubtotal(updatedCart);
     };
 
+    // handles the quantity changes increase or decrease
     const handleQuantityChange = (name, size, action) => {
         const updatedCart = cart.map((item) => {
             if (item.name === name && item.size === size) {
@@ -30,18 +33,20 @@ const CartPage = () => {
         updateCart(updatedCart);
     };
 
+    // Removes item by clicking
     const handleRemoveItem = (name, size) => {
         const updatedCart = cart.filter(item => item.name !== name || item.size !== size);
         updateCart(updatedCart);
     };
 
+    // Calculates total purchase money
     const calculateSubtotal = (cartItems) => {
         const total = cartItems.reduce((acc, item) => acc + item.price, 0);
         setSubtotal(total);
     };
 
     return (
-        <div className="cart-page bg-[#FFFFF6] p-4 w-full mx-auto shadow-md rounded-lg min-h-screen">
+        <div className="cart-page bg-[#FFFFF6] p-4 w-full mx-auto shadow-md rounded-lg min-h-screen px-5 md:px-10 xl:px-20">
             <h1 className="text-xl font-bold mb-3">Shopping Cart</h1>
             <p className="text-sm mb-3 text-gray-500">Add items worth Tk 30 for free shopping</p>
             <div className="progress-bar bg-gray-200 rounded-full h-2 mb-5">
@@ -85,6 +90,7 @@ const CartPage = () => {
                     </div>
                 ))}
             </div>
+            {/* Sub total Section */}
             <div className="mt-6">
                 <div className="flex justify-between text-lg font-semibold">
                     <span>Subtotal</span>
