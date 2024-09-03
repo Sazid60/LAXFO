@@ -42,42 +42,46 @@ const CartPage = () => {
 
     return (
         <div className="cart-page bg-[#FFFFF6] p-4 w-full mx-auto shadow-md rounded-lg min-h-screen">
-            <h1 className="text-xl font-bold mb-2">Shopping Cart</h1>
-            <p className="text-sm mb-2 text-gray-500">Add items worth Tk 30 for free shopping</p>
-            <div className="progress-bar bg-gray-200 rounded-full h-2 mb-4">
+            <h1 className="text-xl font-bold mb-3">Shopping Cart</h1>
+            <p className="text-sm mb-3 text-gray-500">Add items worth Tk 30 for free shopping</p>
+            <div className="progress-bar bg-gray-200 rounded-full h-2 mb-5">
                 <div className="bg-[#164F49] h-2 rounded-full" style={{ width: '80%' }}></div>
             </div>
-            <p className="text-gray-700 mb-4">Added items ({cart.length} Items)</p>
+            <p className="text-gray-700 mb-5">Added items ({cart.length} Items)</p>
             <div>
                 {cart.map((item, index) => (
-                    <div key={index} className="flex justify-between items-center mb-4 border-b pb-4">
-                        <img src={item.imageUrl} alt={item.name} className="w-16 h-16 object-cover" />
-                        <div className="flex-1 ml-4">
-                            <h2 className="text-md font-medium">{item.name}</h2>
-                            <p className="text-sm text-gray-600">({item.size})</p>
+                    <div key={index} className="flex items-center justify-between mb-4 border-b pb-4">
+                        <div className='flex items-center'>
+                            <img src={item.imageUrl} alt={item.name} className="w-16 h-16 object-cover" />
+                            <div className='ml-4 space-y-1 md:space-y-2'>
+                                <h2 className="text-xs md:text-lg font-medium">{item.name}</h2>
+                                <p className="text-xs md:text-sm text-gray-600">({item.size})</p>
+                                <div className="flex justify-center items-center rounded-full bg-[#F2EBE0] w-[90px]">
+                                    <button
+                                        onClick={() => handleQuantityChange(item.name, item.size, 'decrease')}
+                                        className="px-1 py-1 text-xs md:text-sm"
+                                    >
+                                        -
+                                    </button>
+                                    <span className="mx-2 text-xs md:text-sm">{item.quantity}</span>
+                                    <button
+                                        onClick={() => handleQuantityChange(item.name, item.size, 'increase')}
+                                        className="px-1 py-1 text-xs md:text-sm"
+                                    >
+                                        +
+                                    </button>
+                                </div>
+                            </div>
                         </div>
-                        <div className="flex items-center rounded-full bg-[#F2EBE0]">
+                        <div className='space-y-8 text-center'>
+                            <p className="text-xs md:text-sm font-semibold ml-4">{item.price.toFixed(0)} Tk</p>
                             <button
-                                onClick={() => handleQuantityChange(item.name, item.size, 'decrease')}
-                                className="px-2 py-1"
+                                onClick={() => handleRemoveItem(item.name, item.size)}
+                                className="ml-4 text-red-500"
                             >
-                                -
-                            </button>
-                            <span className="mx-2">{item.quantity}</span>
-                            <button
-                                onClick={() => handleQuantityChange(item.name, item.size, 'increase')}
-                                className="px-2 py-1"
-                            >
-                                +
+                                <FaTrashAlt />
                             </button>
                         </div>
-                        <p className="text-md font-semibold ml-4">{item.price.toFixed(2)} Tk</p>
-                        <button
-                            onClick={() => handleRemoveItem(item.name, item.size)}
-                            className="ml-4 text-red-500"
-                        >
-                            <FaTrashAlt />
-                        </button>
                     </div>
                 ))}
             </div>
@@ -86,7 +90,7 @@ const CartPage = () => {
                     <span>Subtotal</span>
                     <span>{subtotal.toFixed(2)} Tk</span>
                 </div>
-                <button className="w-full bg-[#164F49] text-white py-2 rounded-md mt-4">Checkout</button>
+                <button className="w-full bg-[#164F49] text-white py-2 rounded-md mt-4 text-lg">Checkout</button>
             </div>
         </div>
     );
