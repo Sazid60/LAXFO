@@ -4,7 +4,7 @@ import OtherRouting from '../../components/otherRouting/OtherRouting';
 const ShopPage = () => {
     return (
         <div>
-            <OtherRouting/>
+            <OtherRouting page="Shop"/>
         </div>
     );
 };
