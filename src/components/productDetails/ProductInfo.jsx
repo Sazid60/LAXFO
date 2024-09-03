@@ -4,35 +4,42 @@ import 'animate.css';
 import toast from 'react-hot-toast';
 
 const ProductInfo = () => {
-
+    // Options for sizes and flavours
     const sizes = ['100 mg', '200 mg', '300 mg'];
     const flavours = ['Vanilla', 'Chocolate', 'Strawberry'];
 
+    // State for selected size, flavour, and quantity
     const [selectedSize, setSelectedSize] = useState(sizes[0]);
     const [selectedFlavour, setSelectedFlavour] = useState(flavours[0]);
     const [quantity, setQuantity] = useState(0);
 
+    // Unit price for the product
     const unitPrice = 432;
 
+    // Reset quantity when size or flavour changes
     useEffect(() => {
         setQuantity(0);
     }, [selectedSize, selectedFlavour]);
 
+    // Function to handle adding or removing items from the cart
     const handleAddToCart = (action) => {
         let newQuantity = quantity;
 
+        // Update quantity based on action and show toast notification
         if (action === 'increase') {
             newQuantity += 1;
-            toast.success(`${quantity+1} Piece Of This Product Added`)
+            toast.success(`${quantity+1} Piece Of This Product Added`);
         } else if (action === 'decrease' && quantity > 0) {
             newQuantity -= 1;
-            toast.success(`${quantity-1} Piece Of This Product Removed`)
+            toast.success(`${quantity-1} Piece Of This Product Removed`);
         }
 
         setQuantity(newQuantity);
 
+        // Calculate updated total price
         const updatedTotalPrice = unitPrice * newQuantity;
 
+        // Create a cart item object
         const cartItem = {
             name: 'Liposomal Vitamin C',
             price: updatedTotalPrice,
@@ -42,12 +49,15 @@ const ProductInfo = () => {
             imageUrl: '/product1.png'
         };
 
+        // Get cart from local storage or initialize as empty array
         const cart = JSON.parse(localStorage.getItem('cart')) || [];
 
+        // Find index of the existing item in the cart
         const itemIndex = cart.findIndex(
             item => item.name === cartItem.name && item.size === cartItem.size && item.flavour === cartItem.flavour
         );
 
+        // Update or remove item in the cart based on quantity
         if (newQuantity === 0) {
             if (itemIndex > -1) {
                 cart.splice(itemIndex, 1);
@@ -62,6 +72,7 @@ const ProductInfo = () => {
             }
         }
 
+        // Save updated cart to local storage
         localStorage.setItem('cart', JSON.stringify(cart));
     };
 
@@ -70,6 +81,7 @@ const ProductInfo = () => {
             {/* Reviews Section */}
             <div className="flex items-center space-x-2 mb-4">
                 <div className='flex items-center'>
+                    {/* Display 5 stars */}
                     <FaStar className="text-yellow-500" />
                     <FaStar className="text-yellow-500" />
                     <FaStar className="text-yellow-500" />
@@ -137,7 +149,7 @@ const ProductInfo = () => {
 
             {/* Cart Adding */}
             <div className="border-t border-b my-6 py-4">
-                {/* warning */}
+                {/* Warning message */}
                 <div className='flex justify-center items-center'>
                     <div className="flex flex-row pl-4 gap-2 items-center overflow-hidden animate__animated animate__flash animate__infinite" style={{ animationDuration: '10s' }}>
                         <span className="flex-shrink-0 inline-flex item-center justify-center leading-none rounded-full text-red-500">
@@ -151,13 +163,16 @@ const ProductInfo = () => {
                     </div>
                 </div>
                 <div className="flex items-center justify-between mb-2 bg-[#164F49] text-white">
+                    {/* Decrease quantity button */}
                     <button
                         onClick={() => handleAddToCart('decrease')}
                         className="px-4 py-1  text-white font-bold uppercase text-sm"
                     >
                         <span className="text-xl">-</span>
                     </button>
+                    {/* Add to Cart button with current quantity */}
                     <span className="mx-4">Add to Cart ({quantity})</span>
+                    {/* Increase quantity button */}
                     <button
                         onClick={() => handleAddToCart('increase')}
                         className="px-4 py-1  text-white font-bold uppercase text-sm"
@@ -178,39 +193,26 @@ const ProductInfo = () => {
                             <p className="text-xs lg:text-xs">FREE SHIPPING + Cancel anytime</p>
                             <p className="text-xs underline font-medium">YOUR SUBSCRIPTION PERKS +</p>
                         </div>
-                        <p className="font-semibold mt-2 text-sm xl:text-xl">BDT 800</p>
+                        <p className="font-semibold mt-2 text-green-500 text-xl lg:text-2xl">BDT 388.80</p>
                     </div>
-
-                    <div className="text-gray-300 p-2 lg:p-4 flex justify-between">
-                        <div>
-                            <p className="text-xs lg:text-sm">One Time Purchase</p>
-                            <p className="text-xs">or four interest-free payments of <br /> BDT 20 with Sezzle</p>
+                    <div className="p-2 lg:p-4">
+                        <p className="text-xs lg:text-xs">Choose the subscription plan that works best for you</p>
+                        <div className="flex gap-1 mt-2">
+                            <div className="relative flex items-center text-sm border rounded-md py-1 px-4 cursor-pointer bg-white">
+                                <input type="radio" id="monthly" name="subscription" value="monthly" className="sr-only" />
+                                <label htmlFor="monthly" className="flex-1 cursor-pointer">Monthly</label>
+                            </div>
+                            <div className="relative flex items-center text-sm border rounded-md py-1 px-4 cursor-pointer bg-white">
+                                <input type="radio" id="quarterly" name="subscription" value="quarterly" className="sr-only" />
+                                <label htmlFor="quarterly" className="flex-1 cursor-pointer">Quarterly</label>
+                            </div>
+                            <div className="relative flex items-center text-sm border rounded-md py-1 px-4 cursor-pointer bg-white">
+                                <input type="radio" id="yearly" name="subscription" value="yearly" className="sr-only" />
+                                <label htmlFor="yearly" className="flex-1 cursor-pointer">Yearly</label>
+                            </div>
                         </div>
-                        <p className="font-semibold mt-2 text-sm xl:text-xl">BDT 200</p>
+                        <button className="w-full bg-[#164F49] text-white py-2 px-4 rounded mt-4">Subscribe</button>
                     </div>
-                </div>
-            </div>
-            {/* Product Features */}
-            <div className="flex items-center justify-between text-[10px] xl:text-xs text-gray-600 space-x-2 text-center">
-                <div className="flex flex-col items-center">
-                    <img src="/ic1.png" alt="Icon 1" className="w-4 h-4 xl:w-5 xl:h-5" />
-                    <p>Founded by Doctors</p>
-                </div>
-                <div className="flex flex-col items-center">
-                    <img src="/ic2.png" alt="Icon 1" className="w-4 h-4 xl:w-5 xl:h-5" />
-                    <p>Made in Bangladesh</p>
-                </div>
-                <div className="flex flex-col items-center">
-                    <img src="/ic3.png" alt="Icon 1" className="w-4 h-4 xl:w-5 xl:h-5" />
-                    <p>Clinically Verified</p>
-                </div>
-                <div className="flex flex-col items-center">
-                    <img src="/ic4.png" alt="Icon 1" className="w-4 h-4 xl:w-5 xl:h-5" />
-                    <p>Halal Ingredients</p>
-                </div>
-                <div className="flex flex-col items-center">
-                    <img src="/ic6.png" alt="Icon 1" className="w-4 h-4 xl:w-5 xl:h-5" />
-                    <p>Tested by 3rd Party</p>
                 </div>
             </div>
         </div>

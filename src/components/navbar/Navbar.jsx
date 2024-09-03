@@ -6,26 +6,29 @@ import { NavLink } from 'react-router-dom';
 import SideNav from './SideNav';
 import CartDrawer from '../cartDrawer/CartDrawer';
 
-
 const Navbar = () => {
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);
     const [isCartDrawerOpen, setIsCartDrawerOpen] = useState(false);
     const [cartItemCount, setCartItemCount] = useState(0);
 
+    // Toggle sidebar visibility
     const toggleSidebar = () => {
         setIsSidebarOpen(!isSidebarOpen);
     };
 
+    // Toggle cart drawer visibility
     const toggleCartDrawer = () => {
         setIsCartDrawerOpen(!isCartDrawerOpen);
     };
 
+    // Effect to update the cart item count whenever the sidebar or cart drawer state changes
     useEffect(() => {
         const cart = JSON.parse(localStorage.getItem('cart')) || [];
         const totalItems = cart.reduce((acc, item) => acc + item.quantity, 0);
         setCartItemCount(totalItems);
     }, [isCartDrawerOpen, isSidebarOpen]);
 
+    // Navigation links with conditional styling based on active state
     const navLinks = (
         <>
             <li>
@@ -65,6 +68,7 @@ const Navbar = () => {
         <>
             <div className="navbar">
                 <div className="navbar-start">
+                    {/* Logo and link to home */}
                     <a href='/' className="text-xl">
                         <img src="/logo.png" alt="Logo" />
                     </a>
@@ -95,10 +99,10 @@ const Navbar = () => {
                 </div>
             </div>
 
-            {/* Side Navbar */}
+            {/* Side Navbar component */}
             <SideNav toggleSidebar={toggleSidebar} isSidebarOpen={isSidebarOpen} navLinks={navLinks} />
 
-            {/* Cart Drawer */}
+            {/* Cart Drawer component */}
             <CartDrawer isOpen={isCartDrawerOpen} onClose={toggleCartDrawer} />
         </>
     );

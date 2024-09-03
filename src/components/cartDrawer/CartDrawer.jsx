@@ -1,22 +1,26 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { FaTrashAlt } from 'react-icons/fa';
 
 const CartDrawer = ({ isOpen, onClose }) => {
+    // State to hold the cart items and subtotal
     const [cart, setCart] = useState([]);
     const [subtotal, setSubtotal] = useState(0);
 
+    // Effect to load cart items from local storage when the drawer opens
     useEffect(() => {
         const savedCart = JSON.parse(localStorage.getItem('cart')) || [];
         setCart(savedCart);
         calculateSubtotal(savedCart);
     }, [isOpen]);
 
+    // Function to update cart state and local storage
     const updateCart = (updatedCart) => {
         setCart(updatedCart);
         localStorage.setItem('cart', JSON.stringify(updatedCart));
         calculateSubtotal(updatedCart);
     };
 
+    // Function to handle quantity change
     const handleQuantityChange = (name, size, action) => {
         const updatedCart = cart.map((item) => {
             if (item.name === name && item.size === size) {
@@ -30,32 +34,41 @@ const CartDrawer = ({ isOpen, onClose }) => {
         updateCart(updatedCart);
     };
 
+    // Function to handle removing an item from the cart
     const handleRemoveItem = (name, size) => {
         const updatedCart = cart.filter(item => item.name !== name || item.size !== size);
         updateCart(updatedCart);
     };
 
+    // Function to calculate the subtotal of the cart
     const calculateSubtotal = (cartItems) => {
         const total = cartItems.reduce((acc, item) => acc + item.price, 0);
         setSubtotal(total);
     };
 
+    // If the drawer is not open, return null
     if (!isOpen) return null;
 
     return (
         <div className="fixed inset-0 bg-gray-800 bg-opacity-75 z-50 overflow-y-auto flex justify-center">
             <div className="relative w-full md:w-1/3 lg:w-1/4 bg-[#FFFFF6] h-full md:h-auto">
+                {/* Close button */}
                 <button onClick={onClose} className="absolute top-4 right-4 text-2xl text-gray-600">
                     &times;
                 </button>
                 <div className="p-4 h-full overflow-y-auto">
                     <h1 className="text-xl font-bold mb-3">Shopping Cart</h1>
                     <p className="text-sm mb-3 text-gray-500">Add items worth Tk 30 for free shopping</p>
+
+                    {/* Progress bar for free shipping */}
                     <div className="progress-bar bg-gray-200 rounded-full h-2 mb-5">
                         <div className="bg-[#164F49] h-2 rounded-full" style={{ width: '80%' }}></div>
                     </div>
+
+                    {/* Cart item count */}
                     <p className="text-gray-700 mb-5">Added items ({cart.length} Items)</p>
                     <div>
+                        {/* Display cart items */}
                         {cart.length > 0 ? (
                             cart.map((item, index) => (
                                 <div key={index} className="flex items-center justify-between mb-4 border-b pb-4">
@@ -99,7 +112,8 @@ const CartDrawer = ({ isOpen, onClose }) => {
                             <p>Your cart is empty.</p>
                         )}
                     </div>
-                    {/* Subtotal Section */}
+                    
+                    {/* Subtotal and checkout button */}
                     <div className="mt-6">
                         <div className="flex justify-between text-lg font-semibold">
                             <span>Subtotal</span>
