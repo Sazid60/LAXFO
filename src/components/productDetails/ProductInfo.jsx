@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { FaStar } from 'react-icons/fa';
 import 'animate.css';
+import toast from 'react-hot-toast';
 
 const ProductInfo = () => {
 
@@ -60,6 +61,7 @@ const ProductInfo = () => {
         }
 
         localStorage.setItem('cart', JSON.stringify(cart));
+        toast.success(`${quantity+1} Piece Of This Product Added`)
     };
 
     return (

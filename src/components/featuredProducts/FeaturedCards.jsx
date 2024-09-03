@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import toast from 'react-hot-toast';
 import { AiOutlinePlus } from 'react-icons/ai';
 
 const FeaturedCards = ({ product }) => {
@@ -42,6 +43,7 @@ const FeaturedCards = ({ product }) => {
 
         // Saving updated cart to local storage
         localStorage.setItem('cart', JSON.stringify(cart));
+        toast.success('Product Added to Cart')
     };
 
     return (

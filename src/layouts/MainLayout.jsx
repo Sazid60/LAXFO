@@ -3,6 +3,7 @@ import React from 'react';
 import { Outlet } from 'react-router-dom';
 import Navbar from '../components/navbar/navbar';
 import Footer from '../components/footer/Footer';
+import { Toaster } from 'react-hot-toast';
 
 const MainLayout = () => {
     return (
@@ -19,7 +20,10 @@ const MainLayout = () => {
                     <Outlet />
                 </div>
                 <Footer />
-            </div>
+            </div><Toaster
+                position="top-center"
+                reverseOrder={false}
+            />
         </div>
     );
 };
