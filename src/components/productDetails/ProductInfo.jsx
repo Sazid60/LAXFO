@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { FaStar } from 'react-icons/fa';
 
 const ProductInfo = () => {
@@ -7,6 +7,63 @@ const ProductInfo = () => {
 
     const [selectedSize, setSelectedSize] = useState(sizes[0]);
     const [selectedFlavour, setSelectedFlavour] = useState(flavours[0]);
+    const [quantity, setQuantity] = useState(0);
+
+    // Unit price for the product
+    const unitPrice = 4332.23;
+
+    useEffect(() => {
+        // Reset quantity to 0 when size or flavour changes
+        setQuantity(0);
+    }, [selectedSize, selectedFlavour]);
+
+    const handleAddToCart = (action) => {
+        let newQuantity = quantity;
+
+        // Increase or decrease the quantity based on the action
+        if (action === 'increase') {
+            newQuantity += 1;
+        } else if (action === 'decrease' && quantity > 0) {
+            newQuantity -= 1;
+        }
+
+        // Updating the state
+        setQuantity(newQuantity);
+
+        // If increasing the quantity to be added to cart
+        if (action === 'increase') {
+            // Updates the total price with the new quantity
+            const updatedTotalPrice = unitPrice * newQuantity;
+
+            const cartItem = {
+                name: 'Liposomal Vitamin C',
+                price: updatedTotalPrice, // Updates totalPrice here
+                size: selectedSize,
+                flavour: selectedFlavour,
+                quantity: newQuantity
+            };
+
+            // Retrieved existing cart items from local storage
+            const cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+            // Finding the index of the item in the cart if it exists
+            const itemIndex = cart.findIndex(
+                item => item.name === cartItem.name && item.size === cartItem.size && item.flavour === cartItem.flavour
+            );
+
+            if (itemIndex > -1) {
+                // Updating the quantity and total price of the existing item in the cart
+                cart[itemIndex].quantity = newQuantity;
+                cart[itemIndex].price = updatedTotalPrice;
+            } else {
+                // Adding the new item to the cart
+                cart.push(cartItem);
+            }
+
+            // Saving the updated cart back to local storage
+            localStorage.setItem('cart', JSON.stringify(cart));
+        }
+    };
 
     return (
         <div className="p-4">
@@ -24,7 +81,9 @@ const ProductInfo = () => {
 
             {/* Product Title and Price */}
             <h1 className="text-2xl xl:text-4xl font-bold mb-2 italic">Liposomal Vitamin C</h1>
-            <h2 className="text-xl xl:text-3xl text-gray-700 mb-4"><span className='italic'>BDT</span> 4332.23</h2>
+            <h2 className="text-xl xl:text-3xl text-gray-700 mb-4">
+                <span className='italic'>BDT</span> {unitPrice.toFixed(2)}
+            </h2>
 
             {/* Product Description */}
             <div className="mb-4 text-sm xl:text-base">
@@ -78,13 +137,22 @@ const ProductInfo = () => {
 
             {/* Cart Adding */}
             <div className="border-t border-b my-6 py-4">
-                <div className="flex items-center justify-between mb-2">
-                    <button className="flex items-center justify-between px-4 py-1 bg-[#164F49] text-white font-bold uppercase  text-sm w-full">
+                <div className="flex items-center justify-between mb-2 bg-[#164F49] text-white">
+                    <button
+                        onClick={() => handleAddToCart('decrease')}
+                        className="px-4 py-1  text-white font-bold uppercase text-sm"
+                    >
                         <span className="text-xl">-</span>
-                        <span className="mx-4">Add to Cart</span>
+                    </button>
+                    <span className="mx-4">Add to Cart ({quantity})</span>
+                    <button
+                        onClick={() => handleAddToCart('increase')}
+                        className="px-4 py-1  text-white font-bold uppercase text-sm"
+                    >
                         <span className="text-xl">+</span>
                     </button>
                 </div>
+
                 {/* Pickup Info */}
                 <p className="text-sm">Pickup available at our <strong className='italic'>22 Bistro Place, Banani</strong></p>
                 <p className="text-gray-500 text-sm mb-2 mt-2">Usually ready in 2-4 days</p>
@@ -117,23 +185,14 @@ const ProductInfo = () => {
                     <p>Founded by Doctors</p>
                 </div>
                 <div className="flex flex-col items-center">
-                <img src="/ic2.png" alt="Icon 1" className="w-4 h-4 xl:w-5 xl:h-5" />
+                    <img src="/ic2.png" alt="Icon 1" className="w-4 h-4 xl:w-5 xl:h-5" />
                     <p>Made in Bangladesh</p>
                 </div>
                 <div className="flex flex-col items-center">
-                <img src="/ic3.png" alt="Icon 1" className="w-4 h-4 xl:w-5 xl:h-5" />
+                    <img src="/ic3.png" alt="Icon 1" className="w-4 h-4 xl:w-5 xl:h-5" />
                     <p>Clinically Verified</p>
                 </div>
-                <div className="flex flex-col items-center">
-                <img src="/ic4.png" alt="Icon 1" className="w-4 h-4 xl:w-5 xl:h-5" />
-                    <p>Halal Ingredients</p>
-                </div>
-                <div className="flex flex-col items-center">
-                <img src="/ic6.png" alt="Icon 1" className="w-4 h-4 xl:w-5 xl:h-5" />
-                    <p>Tested by 3rd Party</p>
-                </div>
             </div>
-
         </div>
     );
 };
