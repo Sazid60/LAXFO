@@ -23,8 +23,10 @@ const ProductInfo = () => {
 
         if (action === 'increase') {
             newQuantity += 1;
+            toast.success(`${quantity+1} Piece Of This Product Added`)
         } else if (action === 'decrease' && quantity > 0) {
             newQuantity -= 1;
+            toast.success(`${quantity-1} Piece Of This Product Removed`)
         }
 
         setQuantity(newQuantity);
@@ -61,7 +63,6 @@ const ProductInfo = () => {
         }
 
         localStorage.setItem('cart', JSON.stringify(cart));
-        toast.success(`${quantity+1} Piece Of This Product Added`)
     };
 
     return (

@@ -59,7 +59,7 @@ const Navbar = () => {
         <>
             <div className="navbar">
                 <div className="navbar-start">
-                    <a className="text-xl">
+                    <a href='/' className="text-xl">
                         <img src="/logo.png" alt="Logo" />
                     </a>
                 </div>
