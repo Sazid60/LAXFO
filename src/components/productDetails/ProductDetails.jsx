@@ -5,7 +5,7 @@ import ProductInfo from './ProductInfo';
 
 const ProductDetails = () => {
     return (
-        <div className='flex flex-col lg:flex-row items-center lg:px-3 xl:px-20 pt-4 border-t border-b'>
+        <div className='flex flex-col lg:flex-row items-start lg:px-3 xl:px-20 pt-4 border-t border-b'>
             <div className='w-[370px] md:w-auto lg:w-[600px] h-auto px-4'>
                 <ProductCarousel/>
             </div>

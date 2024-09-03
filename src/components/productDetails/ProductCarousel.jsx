@@ -23,6 +23,7 @@ const ProductCarousel = () => {
             onChange={onChange} 
             onClickItem={onClickItem} 
             onClickThumb={onClickThumb}
+            className='mt-4'
         >
             <div>
                 <img src="/product1.png" alt="Slide 1" />
