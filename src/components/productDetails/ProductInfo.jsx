@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { FaStar } from 'react-icons/fa';
 
 const ProductInfo = () => {
+
     const sizes = ['100 mg', '200 mg', '300 mg'];
     const flavours = ['Vanilla', 'Chocolate', 'Strawberry'];
 

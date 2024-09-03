@@ -1,52 +1,53 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { CiSearch } from 'react-icons/ci';
 import { IoCartOutline } from 'react-icons/io5';
-import {RxHamburgerMenu } from 'react-icons/rx';
-import { NavLink } from 'react-router-dom';
+import { RxHamburgerMenu } from 'react-icons/rx';
+import { Link, NavLink } from 'react-router-dom';
 import SideNav from './SideNav';
 
 const Navbar = () => {
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+    const [cartItemCount, setCartItemCount] = useState(0);
 
     const toggleSidebar = () => {
         setIsSidebarOpen(!isSidebarOpen);
     };
 
+    useEffect(() => {
+        const cart = JSON.parse(localStorage.getItem('cart')) || [];
+        const totalItems = cart.reduce((acc, item) => acc + item.quantity, 0);
+        setCartItemCount(totalItems);
+    }, [isSidebarOpen]);
+
     const navLinks = (
         <>
             <li>
-                <NavLink
-                    className={({ isActive }) => isActive ? 'underline' : 'font-normal'} to={"/"}>
+                <NavLink className={({ isActive }) => isActive ? 'underline' : 'font-normal'} to={"/"}>
                     Home
                 </NavLink>
             </li>
             <li>
-                <NavLink
-                    className={({ isActive }) => isActive ? 'underline ' : 'font-normal '} to={"/shop"}>
+                <NavLink className={({ isActive }) => isActive ? 'underline ' : 'font-normal '} to={"/shop"}>
                     Shop
                 </NavLink>
             </li>
             <li>
-                <NavLink
-                    className={({ isActive }) => isActive ? 'underline ' : 'font-normal '} to={"/prescription"}>
+                <NavLink className={({ isActive }) => isActive ? 'underline ' : 'font-normal '} to={"/prescription"}>
                     Prescription
                 </NavLink>
             </li>
             <li>
-                <NavLink
-                    className={({ isActive }) => isActive ? 'underline ' : 'font-normal '} to={"/book"}>
+                <NavLink className={({ isActive }) => isActive ? 'underline ' : 'font-normal '} to={"/book"}>
                     Book Therapy
                 </NavLink>
             </li>
             <li>
-                <NavLink
-                    className={({ isActive }) => isActive ? 'underline ' : 'font-normal '} to={"/blog"}>
+                <NavLink className={({ isActive }) => isActive ? 'underline ' : 'font-normal '} to={"/blog"}>
                     Blog
                 </NavLink>
             </li>
             <li>
-                <NavLink
-                    className={({ isActive }) => isActive ? 'underline ' : 'font-normal  lg:hidden'} to={"/blog"}>
+                <NavLink className={({ isActive }) => isActive ? 'underline ' : 'font-normal  lg:hidden'} to={"/signin"}>
                     Sign In
                 </NavLink>
             </li>
@@ -69,8 +70,15 @@ const Navbar = () => {
                 <div className="navbar-end">
                     <div className='flex justify-between gap-1 lg:gap-3 items-center'>
                         <CiSearch className='w-6 h-6' />
-                        <IoCartOutline className='w-6 h-6' />
-                        <a className='text-[14px] hidden md:block lg:text-sm' href=''>Sign In</a>
+                        <div className="relative">
+                            <Link to="/cartPage"><IoCartOutline className='w-6 h-6' /></Link>
+                            {cartItemCount > 0 && (
+                                <span className="absolute -top-2 -right-2 w-5 h-5 text-xs flex items-center justify-center bg-red-600 text-white rounded-full">
+                                    {cartItemCount}
+                                </span>
+                            )}
+                        </div>
+                        <a className='text-[14px] hidden md:block lg:text-sm' href='/signin'>Sign In</a>
                         <button onClick={toggleSidebar} className="lg:hidden ml-3">
                             <RxHamburgerMenu />
                         </button>
@@ -79,8 +87,7 @@ const Navbar = () => {
             </div>
 
             {/* Side Navbar */}
-            <SideNav toggleSidebar={toggleSidebar} isSidebarOpen={isSidebarOpen} navLinks={navLinks} ></SideNav>
-
+            <SideNav toggleSidebar={toggleSidebar} isSidebarOpen={isSidebarOpen} navLinks={navLinks} />
         </>
     );
 };
