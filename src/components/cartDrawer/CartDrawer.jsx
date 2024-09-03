@@ -44,7 +44,7 @@ const CartDrawer = ({ isOpen, onClose }) => {
 
     return (
         <div className="fixed inset-0 bg-gray-800 bg-opacity-75 z-50 overflow-y-auto flex justify-center">
-            <div className="relative w-full md:w-1/3 lg:w-1/4 bg-white h-full md:h-auto">
+            <div className="relative w-full md:w-1/3 lg:w-1/4 bg-[#FFFFF6] h-full md:h-auto">
                 <button onClick={onClose} className="absolute top-4 right-4 text-2xl text-gray-600">
                     &times;
                 </button>
