@@ -12,7 +12,7 @@ const ProductInfo = () => {
     const [selectedFlavour, setSelectedFlavour] = useState(flavours[0]);
     const [quantity, setQuantity] = useState(0);
 
-    const unitPrice = 4332.23;
+    const unitPrice = 432;
 
     useEffect(() => {
         setQuantity(0);
@@ -100,7 +100,7 @@ const ProductInfo = () => {
 
             {/* Selecting Size */}
             <div className="mb-4 flex items-center">
-                <h1 className="text-base font-semibold mb-2 mr-1 xl:mr-8">Select Size :</h1>
+                <h1 className="text-sm xl:text-lg font-semibold mb-2 mr-1 xl:mr-8">Select Size :</h1>
                 <div className="flex space-x-2">
                     {sizes.map((size, index) => (
                         <div
