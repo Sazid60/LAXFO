@@ -181,8 +181,8 @@ const ProductInfo = () => {
                     </button>
                 </div>
 
-                {/* Pickup Info */}
-                <p className="text-sm">Pickup available at our <strong className='italic'>22 Bistro Place, Banani</strong></p>
+                   {/* Pickup Info */}
+                   <p className="text-sm">Pickup available at our <strong className='italic'>22 Bistro Place, Banani</strong></p>
                 <p className="text-gray-500 text-sm mb-2 mt-2">Usually ready in 2-4 days</p>
 
                 {/* Subscription Options */}
@@ -193,26 +193,39 @@ const ProductInfo = () => {
                             <p className="text-xs lg:text-xs">FREE SHIPPING + Cancel anytime</p>
                             <p className="text-xs underline font-medium">YOUR SUBSCRIPTION PERKS +</p>
                         </div>
-                        <p className="font-semibold mt-2 text-green-500 text-xl lg:text-2xl">BDT 388.80</p>
+                        <p className="font-semibold mt-2 text-sm xl:text-xl">BDT 800</p>
                     </div>
-                    <div className="p-2 lg:p-4">
-                        <p className="text-xs lg:text-xs">Choose the subscription plan that works best for you</p>
-                        <div className="flex gap-1 mt-2">
-                            <div className="relative flex items-center text-sm border rounded-md py-1 px-4 cursor-pointer bg-white">
-                                <input type="radio" id="monthly" name="subscription" value="monthly" className="sr-only" />
-                                <label htmlFor="monthly" className="flex-1 cursor-pointer">Monthly</label>
-                            </div>
-                            <div className="relative flex items-center text-sm border rounded-md py-1 px-4 cursor-pointer bg-white">
-                                <input type="radio" id="quarterly" name="subscription" value="quarterly" className="sr-only" />
-                                <label htmlFor="quarterly" className="flex-1 cursor-pointer">Quarterly</label>
-                            </div>
-                            <div className="relative flex items-center text-sm border rounded-md py-1 px-4 cursor-pointer bg-white">
-                                <input type="radio" id="yearly" name="subscription" value="yearly" className="sr-only" />
-                                <label htmlFor="yearly" className="flex-1 cursor-pointer">Yearly</label>
-                            </div>
+
+                    <div className="text-gray-300 p-2 lg:p-4 flex justify-between">
+                        <div>
+                            <p className="text-xs lg:text-sm">One Time Purchase</p>
+                            <p className="text-xs">or four interest-free payments of <br /> BDT 20 with Sezzle</p>
                         </div>
-                        <button className="w-full bg-[#164F49] text-white py-2 px-4 rounded mt-4">Subscribe</button>
+                        <p className="font-semibold mt-2 text-sm xl:text-xl">BDT 200</p>
                     </div>
+                </div>
+            </div>
+            {/* Product Features */}
+            <div className="flex items-center justify-between text-[10px] xl:text-xs text-gray-600 space-x-2 text-center">
+                <div className="flex flex-col items-center">
+                    <img src="/ic1.png" alt="Icon 1" className="w-4 h-4 xl:w-5 xl:h-5" />
+                    <p>Founded by Doctors</p>
+                </div>
+                <div className="flex flex-col items-center">
+                    <img src="/ic2.png" alt="Icon 1" className="w-4 h-4 xl:w-5 xl:h-5" />
+                    <p>Made in Bangladesh</p>
+                </div>
+                <div className="flex flex-col items-center">
+                    <img src="/ic3.png" alt="Icon 1" className="w-4 h-4 xl:w-5 xl:h-5" />
+                    <p>Clinically Verified</p>
+                </div>
+                <div className="flex flex-col items-center">
+                    <img src="/ic4.png" alt="Icon 1" className="w-4 h-4 xl:w-5 xl:h-5" />
+                    <p>Halal Ingredients</p>
+                </div>
+                <div className="flex flex-col items-center">
+                    <img src="/ic6.png" alt="Icon 1" className="w-4 h-4 xl:w-5 xl:h-5" />
+                    <p>Tested by 3rd Party</p>
                 </div>
             </div>
         </div>
