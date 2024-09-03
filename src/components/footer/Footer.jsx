@@ -4,7 +4,7 @@ import { GoArrowUpRight } from 'react-icons/go';
 
 const Footer = () => {
     return (
-        <div className='flex flex-col lg:flex-row lg:justify-around items-center bg-[#15322D] text-white py-14 px-4 md:px-16 md:py-6 lg:px-20 lg:py-11'>
+        <div className='flex flex-col lg:flex-row lg:gap-6 lg:justify-around items-center bg-[#15322D] text-white py-14 px-4 md:px-16 md:py-6 lg:px-20 lg:py-11'>
             <div className='flex justify-start w-full lg:w-auto'>
                 <img src="/logo2.png" alt="" />
             </div>

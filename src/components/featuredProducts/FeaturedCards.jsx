@@ -4,7 +4,7 @@ import { AiOutlinePlus } from 'react-icons/ai';
 
 const FeaturedCards = ({ product }) => {
     return (
-        <div className='relative w-full lg:w-[295px] mx-auto'>
+        <div className='relative w-full lg:w-[295px] mx-auto mt-4 xl:mt-10'>
             <img 
                 className='relative w-[398px] h-[230px] md:w-[600px] md:h-[401px]' 
                 src={product.imageUrl} 

@@ -51,7 +51,7 @@ const FeaturedProducts = () => {
     return (
         <div className='px-4 py-6 xl:px-20 mb-4 xl:mb-14 mt-4 xl:mt-10 border-t border-b'>
             <h1 className='text-[40px] font-semibold'>Frequently Bought Together</h1>
-            <p className='font-normal italic text-xs lg:text-base'>
+            <p className='font-normal italic text-xs lg:text-xl mt-4'>
                 In the dynamic world of e-commerce, the "Frequently Bought Together" feature has become a cornerstone of the online shopping experience. This tool leverages the power of data analytics and consumer behavior insights to suggest complementary products that are often purchased in conjunction with the item a customer is viewing. By highlighting these related products, retailers aim to increase sales, improve customer satisfaction, and streamline the shopping process.
             </p>
             <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-6 mb-6'>
