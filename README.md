@@ -1,7 +1,6 @@
 # LAXFO Project
 
 #### Website URL: [https://laxfo.netlify.app/](https://laxfo.netlify.app/)
-#### Server-Side Repository: [https://github.com/Sazid60?tab=repositories](https://github.com/Sazid60?tab=repositories)
 
 ## Overview
 
