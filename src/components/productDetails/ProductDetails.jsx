@@ -10,7 +10,6 @@ const ProductDetails = () => {
             <div className='flex justify-between items-center px-2 xl:px-20 py-4 xl:py-8 text-xs lg:text-base'>
                 <h1>Home - Vitamin C Supplements</h1>
                 <a className='italic underline'>
-                    {/* Show love icon on small devices and text on larger devices */}
                     <span className='block sm:hidden'>
                     <CiHeart />
                     </span>

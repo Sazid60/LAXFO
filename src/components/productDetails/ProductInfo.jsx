@@ -9,60 +9,55 @@ const ProductInfo = () => {
     const [selectedFlavour, setSelectedFlavour] = useState(flavours[0]);
     const [quantity, setQuantity] = useState(0);
 
-    // Unit price for the product
     const unitPrice = 4332.23;
 
     useEffect(() => {
-        // Reset quantity to 0 when size or flavour changes
         setQuantity(0);
     }, [selectedSize, selectedFlavour]);
 
     const handleAddToCart = (action) => {
         let newQuantity = quantity;
-
-        // Increase or decrease the quantity based on the action
+    
         if (action === 'increase') {
             newQuantity += 1;
         } else if (action === 'decrease' && quantity > 0) {
             newQuantity -= 1;
         }
-
-        // Updating the state
+    
         setQuantity(newQuantity);
-
-        // If increasing the quantity to be added to cart
-        if (action === 'increase') {
-            // Updates the total price with the new quantity
-            const updatedTotalPrice = unitPrice * newQuantity;
-
-            const cartItem = {
-                name: 'Liposomal Vitamin C',
-                price: updatedTotalPrice, // Updates totalPrice here
-                size: selectedSize,
-                flavour: selectedFlavour,
-                quantity: newQuantity
-            };
-
-            // Retrieved existing cart items from local storage
-            const cart = JSON.parse(localStorage.getItem('cart')) || [];
-
-            // Finding the index of the item in the cart if it exists
-            const itemIndex = cart.findIndex(
-                item => item.name === cartItem.name && item.size === cartItem.size && item.flavour === cartItem.flavour
-            );
-
+    
+        const updatedTotalPrice = unitPrice * newQuantity;
+    
+        const cartItem = {
+            name: 'Liposomal Vitamin C',
+            price: updatedTotalPrice,
+            size: selectedSize,
+            flavour: selectedFlavour,
+            quantity: newQuantity,
+            imageUrl: '/product1.png'
+        };
+    
+        const cart = JSON.parse(localStorage.getItem('cart')) || [];
+    
+        const itemIndex = cart.findIndex(
+            item => item.name === cartItem.name && item.size === cartItem.size && item.flavour === cartItem.flavour
+        );
+    
+        if (newQuantity === 0) {
             if (itemIndex > -1) {
-                // Updating the quantity and total price of the existing item in the cart
+                cart.splice(itemIndex, 1);
+            }
+        } else {
+            if (itemIndex > -1) {
                 cart[itemIndex].quantity = newQuantity;
                 cart[itemIndex].price = updatedTotalPrice;
+                cart[itemIndex].imageUrl = cartItem.imageUrl;
             } else {
-                // Adding the new item to the cart
                 cart.push(cartItem);
             }
-
-            // Saving the updated cart back to local storage
-            localStorage.setItem('cart', JSON.stringify(cart));
         }
+    
+        localStorage.setItem('cart', JSON.stringify(cart));
     };
 
     return (
@@ -177,7 +172,6 @@ const ProductInfo = () => {
                     </div>
                 </div>
             </div>
-
             {/* Product Features */}
             <div className="flex items-center justify-between text-[10px] xl:text-xs text-gray-600 space-x-2 text-center">
                 <div className="flex flex-col items-center">
@@ -191,6 +185,14 @@ const ProductInfo = () => {
                 <div className="flex flex-col items-center">
                     <img src="/ic3.png" alt="Icon 1" className="w-4 h-4 xl:w-5 xl:h-5" />
                     <p>Clinically Verified</p>
+                </div>
+                <div className="flex flex-col items-center">
+                    <img src="/ic4.png" alt="Icon 1" className="w-4 h-4 xl:w-5 xl:h-5" />
+                    <p>Halal Ingredients</p>
+                </div>
+                <div className="flex flex-col items-center">
+                    <img src="/ic6.png" alt="Icon 1" className="w-4 h-4 xl:w-5 xl:h-5" />
+                    <p>Tested by 3rd Party</p>
                 </div>
             </div>
         </div>
