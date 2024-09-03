@@ -33,14 +33,14 @@ const ReviewCard = ({review}) => {
                     <h1 className='font-semibold italic text-sm md:text-base'>{date}</h1>
                 </div>
             </div>
-            <div className='flex flex-col lg:flex-row justify-between items-start space-y-3 lg:space-y-0 lg:items-center'>
+            <div className='flex flex-col lg:flex-row justify-between items-start space-y-3 lg:space-y-0 lg:items-center mb-4'>
                 <h1 className='max-w-[758px]'>{details}</h1>
                 <div className='flex items-center gap-2'>
                     <h1>Was this helpful?</h1> 
                     <BiLike /> 
                     <BiDislike />
                     </div>
-            </div> <hr className='mt-2' />
+            </div>
         </div>
     );
 };

@@ -5,12 +5,14 @@ import Consultation from '../../components/consultation/Consultation';
 import Banner from '../../components/banner/Banner';
 import Accordion from '../../components/accordion/Accordion';
 import Reviews from '../../components/reviews/Reviews';
+import FeaturedProducts from '../../components/featuredProducts/FeaturedProducts';
 
 const ProductPage = () => {
     return (
         <div className='bg-[#FFFFF6]'>
             <Accordion/>
             <Banner/>
+            <FeaturedProducts/>
             <Reviews/>
             <Consultation/>
             <RedBanner />

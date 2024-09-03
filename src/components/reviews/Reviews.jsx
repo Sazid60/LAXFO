@@ -32,7 +32,7 @@ const Reviews = () => {
     ]
 
     return (
-        <div className='px-4 xl:px-20 mb-14'>
+        <div className='px-4 xl:px-20 mb-4 xl:mb-14 border-t border-b'>
             <h1 className='text-[40px] font-semibold'>Reviews</h1>
             <div className='flex flex-col md:flex-row justify-start  md:justify-between items-start space-y-3 md:space-y-0 md:items-center'>
                 <button className='text-white bg-[#164F49] px-8 py-2'>Write a Review</button>
